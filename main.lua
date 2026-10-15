@@ -139,7 +139,7 @@ local function player_turn()
             print("You drew " .. tostring(new_card) .. ".")
 
                 if score_hand(player_hand) > 21 then
-                    print("You went over 21! You bust")
+                    print("You went over 21! You bust.")
                     return bust
                 end
             elseif choice == "s" or choice == "stand" then
@@ -151,4 +151,33 @@ local function player_turn()
     end
 end
 
+--[[ DEALER'S TURN ]]
+local function dealer_turn(hand)
+    io.write("\nThe dealer shows: ")
+    for i=1, #hand do
+        io.write(tostring(hand[i]) .. " ")
+    end                                        io.write("(" .. score_hand(hand) .. ")\n")
+    while score_hand(hand) < 17 do
+        local new_card = draw_card()
+        table.insert(hand, new_card)
+        print("The dealer draws to 17: " .. tostring(new_card) .. ", total is now " .. score_hand(hand))
+    end        
+
+    if score_hand(hand) > 21 and score_hand(player_hand) <= 21 then
+        print("Dealer bust! You win!")
+    elseif score_hand(hand) > 21 and score_hand(player_hand) > 21 then
+        print("Dealer bust. But you busted first... tough luck! You lose!")
+    else
+        if score_hand(hand) > score_hand(player_hand) then
+            print("Dealer Wins!")
+        elseif score_hand(hand) < score_hand(player_hand) then
+            print("You win!")
+        else
+            print("This is a draw.")
+        end
+    end
+end
+
+--[[ LET'S PLAY ]]
 player_turn()
+dealer_turn(dealer_hand)

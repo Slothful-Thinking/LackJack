@@ -1,0 +1,84 @@
+Script started on 2026-10-15 02:16:14-04:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="48" LINES="25"]
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [31m4♡[0m [31m6♡[0m (10)
+Dealer's hand: [31m5♡[0m ?? (??)
+
+You have 10, [h]it or [s]tand?
+h
+You drew [37m8♣[0m.
+You have 18, [h]it or [s]tand?
+s
+
+The dealer shows: [31m5♡[0m [37mK♣[0m (15)
+The dealer draws to 17: [31m8♡[0m, total is now 23
+Dealer bust! You win!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [31m7♡[0m [31mK♡[0m (17)
+Dealer's hand: [37mK♣[0m ?? (??)
+
+You have 17, [h]it or [s]tand?
+s
+
+The dealer shows: [37mK♣[0m [31m9◇[0m (19)
+Dealer Wins!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [37m9♣[0m [31m5◇[0m (14)
+Dealer's hand: [37m5♣[0m ?? (??)
+
+You have 14, [h]it or [s]tand?
+s
+
+The dealer shows: [37m5♣[0m [31m8◇[0m (13)
+The dealer draws to 17: [31m10♡[0m, total is now 23
+Dealer bust! You win!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [37m8♠[0m [31m7♡[0m (15)
+Dealer's hand: [37m2♣[0m ?? (??)
+
+You have 15, [h]it or [s]tand?
+s
+
+The dealer shows: [37m2♣[0m [31m6♡[0m (8)
+The dealer draws to 17: [37m6♣[0m, total is now 14
+The dealer draws to 17: [37m7♠[0m, total is now 21
+Dealer Wins!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [37m3♠[0m [37m8♠[0m (11)
+Dealer's hand: [31m7♡[0m ?? (??)
+
+You have 11, [h]it or [s]tand?
+h
+You drew [31m9◇[0m.
+You have 20, [h]it or [s]tand?
+s
+
+The dealer shows: [31m7♡[0m [37mQ♠[0m (17)
+You win!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0mlua main.lua 
+[?2004lPlayer's hand: [31mA♡[0m [31m2◇[0m (13)
+Dealer's hand: [37m4♣[0m ?? (??)
+
+You have 13, [h]it or [s]tand?
+s
+
+The dealer shows: [37m4♣[0m [37m9♣[0m (13)
+The dealer draws to 17: [37mQ♣[0m, total is now 23
+Dealer bust! You win!
+[?2004h
+╔([0;32m~/.../Game/LackJack[0m)
+╚══» [0;97m$ [0m[?2004l
+exit
+
+Script done on 2026-10-15 02:17:27-04:00 [COMMAND_EXIT_CODE="0"]
