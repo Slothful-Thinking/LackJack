@@ -222,9 +222,11 @@ local function player_turn()
                         else
                             print("I see you come to your senses. Took you long enough.")
                             delay(0.5)
+                        break
                         end
                     else
                         print("Good boy.")
+                        break
                         delay(0.5)
                     end
                 end
@@ -322,7 +324,12 @@ end
 print("Welcome to LackJack!\n")
 delay(0.5)
 while true do
-    if BANKROLL > 0 then
+    if BANKROLL > 4000 then
+        print("Oh shit! I guess I'm losing my job now.")
+        delay(0.5)
+        print("\n\nI hate you.\n -- Sincerely, Jack.")
+        break
+    elseif BANKROLL > 0 then
         player_hand, dealer_hand = deal_cards(2)
         player_score = score_hand(player_hand)
         dealer_score = score_hand(dealer_hand)
