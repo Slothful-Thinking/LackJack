@@ -6,6 +6,7 @@
 
 local DEBUG = false
 local BANKROLL = 100
+local SAVE_FILE = "lackjack.sav"
 
 for i = 1, #arg do
     local opt = arg[i]:lower()
@@ -157,7 +158,7 @@ end
 --[[ BETTING ]]
 local function ask_bet()
     while true do
-        io.write("You have " .. BANKROLL .. ". Bet how much? ")
+        io.write("You have " .. BANKROLL .. ".\nBet how much? ")
         delay(0.5)
         local input = trim(io.read() or "")
         local amount = tonumber(input)
@@ -320,36 +321,102 @@ local function dealer_turn(hand)
     end
 end
 
+--[[ CONTINUE / QUIT / SAVE ]]
+local function save_game(BANKROLL)
+    local tmp = SAVE_FILE .. ".tmp"
+    local f = io.open(tmp, "w")
+    if not f then
+        return false
+    end
+    f:write(tostring(BANKROLL), "\n")
+    f:close()
+    os.rename(tmp, SAVE_FILE)
+end
+
+local function load_game()
+    local f = io.open(SAVE_FILE, "r")
+    if not f then return nil end
+    local saved = tonumber(f:read("*l") or "")
+    f:close()
+    return saved
+end
+
+local function play_again()
+    io.write("Play again? [y]es / [n]o / [s]ave and quit ")
+    local answer = (trim(io.read() or "")):sub(1, 1):lower()
+
+    while BANKROLL > 0 do
+        if answer == "s" and save_game(BANKROLL) == false then
+            print("Couldn't save. The house misplaced its ledger.\nIt's probably hanging out with the Jacks.")
+            return false
+        elseif answer == "s" then
+            save_game(BANKROLL)
+            print("Ledger closed. Bankroll recorded: " .. BANKROLL)
+            return false
+        elseif answer == "n" then
+            print("Thanks for playing LackJack.\nWe hope you had a good time.\nIf you see the Jacks, tell them to bring their asses back here!")
+            return false
+        elseif answer == "y" then
+            return new_game()
+        elseif answer ~= "n" or answer ~= "y" or answer ~= "s" then
+            print("What are you doing? This isn't a valid option.\nPlease try again.")
+            return false
+        end
+    end
+    return true
+end
+
+local function new_game()
+    while true do
+        if BANKROLL > 4000 then
+            print("Oh shit! I guess I'm losing my job now.")
+            delay(0.5)
+            print("\n\nI hate you.\n -- Sincerely, Jack.")
+            break
+        elseif BANKROLL > 0 then
+            player_hand, dealer_hand = deal_cards(2)
+            player_score = score_hand(player_hand)
+            dealer_score = score_hand(dealer_hand)
+            bet = ask_bet()
+            delay(1.0)
+            print(display_player_hand(player_hand))
+            delay(1.0)
+            print(display_dealer_hand(dealer_hand))
+            delay(1.0)
+            player_turn()
+            delay(1.0)
+            dealer_turn(dealer_hand)
+            if BANKROLL <= 0 then
+                print("GAME OVER")
+                delay(1.0)
+                print("You're broke. The dealer smirks.")
+                delay(0.3)
+                print("Come back when you have better odds... if we ever find the Jacks.")
+                delay(0.5)
+                print("Final tally: You lost everything.")
+                play_again()
+            end
+        end
+    end
+end
+
+local function menu()
+    while true do
+        print("\n\n\nWhat would you like to do?")
+        print("[S]tart a new game or [l]oad a save: ")
+        local answer = (trim(io.read() or "")):sub(1, 1):lower()
+        if answer == "s" then
+            new_game()
+        elseif answer == "l" then
+            load_game()
+        else
+            print("Invalid option, please use \"s\" or \"l\"")
+        end
+    end
+end
+        
+
 --[[ LET'S PLAY ]]
 print("Welcome to LackJack!\n")
 delay(0.5)
-while true do
-    if BANKROLL > 4000 then
-        print("Oh shit! I guess I'm losing my job now.")
-        delay(0.5)
-        print("\n\nI hate you.\n -- Sincerely, Jack.")
-        break
-    elseif BANKROLL > 0 then
-        player_hand, dealer_hand = deal_cards(2)
-        player_score = score_hand(player_hand)
-        dealer_score = score_hand(dealer_hand)
-        bet = ask_bet()
-        delay(1.0)
-        print(display_player_hand(player_hand))
-        delay(1.0)
-        print(display_dealer_hand(dealer_hand))
-        delay(1.0)
-        player_turn()
-        delay(1.0)
-        dealer_turn(dealer_hand)
-    else
-        print("GAME OVER")
-        delay(1.0)
-        print("You're broke. The dealer smirks.")
-        delay(0.3)
-        print("Come back when you have better odds... if we ever find the Jacks.")
-        delay(0.5)
-        print("Final tally: You lost everything.")
-        break
-    end
-end
+menu()
