@@ -5,5 +5,11 @@ Rules (such as they are):
 - Standard blackjack otherwise: hit/stand, dealer draws to 17, 3:2 payout.
 - Yes, this changes the odds. No, I don't know by how much. Yet.
 
+This is my very first lua project/game. I'm learning the language. 
+Is the code pretty? Absolutely not. Do I care? Absolutely not.
+
 Run:
     lua main.lua          (add --debug to peek at the hole card)
+
+
+MIT License.
