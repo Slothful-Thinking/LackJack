@@ -1,4 +1,5 @@
-# LackJack. It's BlackJack, but we lost the Jacks
+# LackJack. 
+### It's BlackJack, but we lost the Jacks
 
 * Rules (such as they are):
   - 48-card deck. No Jacks. They're gone. We don't talk about it.
